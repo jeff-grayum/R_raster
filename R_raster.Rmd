@@ -1,0 +1,31 @@
+---
+title: "R_raster"
+author: "Jeff Grayum"
+date: "3/24/2021"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Installing and loading libraries.
+```{r}
+#install.packages("raster")
+#install.packages("sp")
+#install.packages("rgdal")
+library(raster)
+library(sp)
+library(rgdal)
+```
+
+
+Loading dataset.
+```{r}
+DEM <- raster("NEON-DS-Field-Site-Spatial-Data/SJER/DigitalTerrainModel/SJER2013_DTM.tif")
+
+DEM
+```
+
