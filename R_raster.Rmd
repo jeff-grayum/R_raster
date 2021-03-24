@@ -24,8 +24,20 @@ library(rgdal)
 
 Loading dataset.
 ```{r}
+#These remote sensing data files provide information on the vegetation at the National Ecological Observatory Network's San Joaquin Experimental Range and Soaproot Saddle field sites.
+
 DEM <- raster("NEON-DS-Field-Site-Spatial-Data/SJER/DigitalTerrainModel/SJER2013_DTM.tif")
 
 DEM
+
+#dimensions: "size" of the file in pixels (nrows, ncols, total cells).
+#resolution: size of each pixel (1 meter x 1 meter, in this example).
+#extent: spatial extent of raster (same coordinate units as coordinate ref system of the raster).
+#crs: coordinate reference system for the raster (UTM's, in this case).
 ```
 
+Some notes:
+-Raster data (or "gridded data") are data that are SAVED IN PIXELS.
+-Each pixel represents an area on the Earth's surface.
+-sp and raster packages are both needed.
+-rgdal allows us to export rasters to GeoTIFF format.
