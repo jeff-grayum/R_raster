@@ -11,6 +11,9 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Link to example: https://www.neonscience.org/resources/learning-hub/tutorials/raster-data-r
+
+
 Installing and loading libraries.
 ```{r}
 #install.packages("raster")
@@ -19,6 +22,7 @@ Installing and loading libraries.
 library(raster)
 library(sp)
 library(rgdal)
+library(tidyverse)
 ```
 
 
@@ -41,3 +45,45 @@ Some notes:
 -Each pixel represents an area on the Earth's surface.
 -sp and raster packages are both needed.
 -rgdal allows us to export rasters to GeoTIFF format.
+
+```{r}
+#This raster doesn't have min/max values associated with its attributes.  We must add them manually.
+
+DEM <- setMinMax(DEM)
+
+#Notice "values" is now listed as an attribute, and has min, max --> what these represent depends on what is represented by each pixel in the raster.
+
+DEM
+```
+
+Let's view the rasters min and max values, and the range.
+```{r}
+cellStats(DEM, min)
+
+cellStats(DEM, max)
+
+cellStats(DEM, range)
+
+#Can we do this tidyverse-style?
+DEM %>%
+  cellStats(min)
+
+DEM %>%
+  cellStats(max)
+
+DEM %>%
+  cellStats(range)
+
+#We can!!
+```
+
+Now we must consider the coordinate reference system (crs), and the extent (exact boundries).
+```{r}
+DEM@crs
+
+#The raster is located in UTM Zone 11
+
+DEM@extent
+```
+
+
